@@ -229,6 +229,25 @@ btnLaporkan.addEventListener(
 
 );
 
+const btnLaporkanPrestasi =
+document.getElementById("btnLaporkanPrestasi");
+
+btnLaporkanPrestasi.addEventListener(
+
+    "click",
+
+    function(){
+
+        if(jenisLaporan==="prestasi"){
+
+            kirimPrestasi();
+
+        }
+
+    }
+
+);
+
 /* =====================================================
    DATA PELANGGARAN
 ===================================================== */
@@ -417,6 +436,107 @@ document
     alert("Terjadi kesalahan saat mengirim laporan.");
 
 }
+
+}
+
+/* =====================================================
+   KIRIM PRESTASI (Bagian 1)
+===================================================== */
+
+async function kirimPrestasi(){
+
+    try{
+
+        // ===========================
+        // Loading
+        // ===========================
+
+        document.getElementById("loadingOverlay").style.display = "flex";
+
+        btnLaporkanPrestasi.disabled = true;
+
+        btnLaporkanPrestasi.innerHTML =
+            "⏳ Mengirim Prestasi...";
+
+        // ===========================
+        // Ambil Data Siswa
+        // ===========================
+
+        const siswa = dataSiswa.find(
+            s => s.nis === document.getElementById("nis").value
+        );
+
+        if(!siswa){
+
+            document.getElementById("loadingOverlay").style.display = "none";
+
+            btnLaporkanPrestasi.disabled = false;
+
+            btnLaporkanPrestasi.innerHTML =
+                "🏆 LAPORKAN PRESTASI";
+
+            alert("Data siswa tidak ditemukan.");
+
+            return;
+
+        }
+
+        // ===========================
+        // Foto
+        // ===========================
+
+        const file =
+            document.getElementById("foto_prestasi").files[0];
+
+        if(!file){
+
+            document.getElementById("loadingOverlay").style.display = "none";
+
+            btnLaporkanPrestasi.disabled = false;
+
+            btnLaporkanPrestasi.innerHTML =
+                "🏆 LAPORKAN PRESTASI";
+
+            alert("Silakan pilih foto prestasi.");
+
+            return;
+
+        }
+
+        // ===========================
+        // Base64
+        // ===========================
+
+        const image = await new Promise((resolve,reject)=>{
+
+            const reader = new FileReader();
+
+            reader.onload = () => resolve(reader.result);
+
+            reader.onerror = reject;
+
+            reader.readAsDataURL(file);
+
+        });
+
+        console.log("Foto Prestasi berhasil dibaca.");
+
+    }
+
+    catch(err){
+
+        document.getElementById("loadingOverlay").style.display = "none";
+
+        btnLaporkanPrestasi.disabled = false;
+
+        btnLaporkanPrestasi.innerHTML =
+            "🏆 LAPORKAN PRESTASI";
+
+        console.error(err);
+
+        alert("Terjadi kesalahan saat memproses prestasi.");
+
+    }
 
 }
 
