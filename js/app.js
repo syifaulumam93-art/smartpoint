@@ -395,21 +395,26 @@ document
 /* =====================================
    POPUP BERHASIL
 ===================================== */
-const btnWA = document.getElementById("btnWA");
-const btnInputLagi = document.getElementById("btnInputLagi");
+document.addEventListener("click", function (e) {
 
-if (btnWA) {
-    btnWA.addEventListener("click", () => {
-        window.open(window.waUrl, "_blank");
-    });
-}
+    if (e.target.id === "btnWA") {
 
-if (btnInputLagi) {
-    btnInputLagi.addEventListener("click", () => {
+        console.log("Tombol WA diklik");
+
+        window.location.href = window.waUrl;
+
+    }
+
+    if (e.target.id === "btnInputLagi") {
+
+        console.log("Tombol Input Lagi diklik");
+
         document
             .getElementById("popupBerhasil")
             .classList.remove("show");
 
         location.reload();
-    });
-}
+
+    }
+
+});
