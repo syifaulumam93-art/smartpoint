@@ -87,8 +87,66 @@
       <button id="btnLaporkan" disabled>LAPORKAN</button>
     </div>
 
-    <div id="prestasiSection" style="display:none"></div>
-  </section>
+    <div id="prestasiSection" style="display:none">
+
+    <div class="form-group">
+        <label>Nama Penghargaan</label>
+        <input
+            type="text"
+            id="nama_penghargaan"
+            placeholder="Contoh : Juara 1 Lomba PAI Tingkat Kota">
+    </div>
+
+    <div class="form-group">
+        <label>Kategori</label>
+        <select id="kategori">
+            <option value="">Memuat data...</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Masa Berlaku</label>
+        <input
+            id="masa_berlaku"
+            type="text"
+            readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Tingkat Penghargaan</label>
+        <select id="tingkat_penghargaan">
+            <option value="">Pilih kategori terlebih dahulu</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Jumlah Poin</label>
+        <input
+            id="jumlah_poin_prestasi"
+            type="text"
+            readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Foto Prestasi</label>
+        <input
+            id="foto_prestasi"
+            type="file"
+            accept="image/*"
+            capture="environment">
+    </div>
+
+    <div class="form-group">
+        <img
+            id="previewFotoPrestasi"
+            style="display:none;max-width:100%;border-radius:12px;">
+    </div>
+
+    <button id="btnLaporkanPrestasi" disabled>
+        🏆 LAPORKAN PRESTASI
+    </button>
+
+</div>
 
   <script src="js/config.js"></script>
   <script src="js/siswa.js"></script>

@@ -165,6 +165,8 @@ window.onload = async function(){
 
     await loadDataPelanggaran();
 
+    await loadDataPrestasi();
+
 }
 
 /* =====================================================
@@ -425,11 +427,38 @@ document.addEventListener("click", function (e) {
 
     if (e.target.id === "btnWA") {
 
-        console.log("Tombol WA diklik");
+    // Buka WhatsApp
+    window.open(window.waUrl, "_blank");
 
-        window.location.href = window.waUrl;
+    // Tutup popup
+    document
+        .getElementById("popupBerhasil")
+        .classList.remove("show");
 
-    }
+    // Reset Form
+    kelas.selectedIndex = 0;
+
+    nama_siswa.innerHTML = "";
+
+    document.getElementById("nis").value = "";
+
+    document.getElementById("nomor_wa").value = "";
+
+    document.getElementById("nama_pelanggaran").selectedIndex = 0;
+
+    document.getElementById("jumlah_poin").value = "";
+
+    document.getElementById("pembinaan").value = "";
+
+    document.getElementById("foto").value = "";
+
+    document.getElementById("previewFoto").src = "";
+
+    document.getElementById("previewFoto").style.display = "none";
+
+    btnLaporkan.disabled = true;
+
+}
 
     if (e.target.id === "btnInputLagi") {
 
