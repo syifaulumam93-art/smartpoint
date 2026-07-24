@@ -435,3 +435,104 @@ hr{
     transform:translateY(-2px);
 
 }
+
+/* =====================================================
+   LOADING OVERLAY
+===================================================== */
+
+.loading-overlay{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(5px);
+
+    -webkit-backdrop-filter:blur(5px);
+
+    z-index:99999;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.loading-box{
+
+    width:320px;
+
+    max-width:90%;
+
+    background:#ffffff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.15);
+
+}
+
+.loading-box h3{
+
+    margin-top:18px;
+
+    margin-bottom:10px;
+
+    color:#0F5BA7;
+
+    font-size:22px;
+
+}
+
+.loading-box p{
+
+    color:#666;
+
+    font-size:15px;
+
+    line-height:1.6;
+
+}
+
+.loader{
+
+    width:60px;
+
+    height:60px;
+
+    margin:auto;
+
+    border:6px solid #E6ECF5;
+
+    border-top:6px solid #1A73E8;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}

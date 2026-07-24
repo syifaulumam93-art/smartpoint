@@ -233,7 +233,17 @@ btnLaporkan.addEventListener(
 
 async function kirimPelanggaran(){
 
-    try{
+  try{
+
+    // ===========================
+    // Tampilkan Loading
+    // ===========================
+
+    document.getElementById("loadingOverlay").style.display = "flex";
+
+    btnLaporkan.disabled = true;
+
+    btnLaporkan.innerHTML = "⏳ Mengirim Laporan...";
 
         const siswa = dataSiswa.find(
             s => s.nis === document.getElementById("nis").value
@@ -336,6 +346,16 @@ async function kirimPelanggaran(){
 
         console.log(result);
 
+// ===========================
+// Sembunyikan Loading
+// ===========================
+
+document.getElementById("loadingOverlay").style.display = "none";
+
+btnLaporkan.disabled = false;
+
+btnLaporkan.innerHTML = "LAPORKAN";
+
         if(result.status=="success"){
 
     // Simpan URL WA untuk tombol popup
@@ -384,11 +404,17 @@ document
 
     catch(err){
 
-        console.error(err);
+    document.getElementById("loadingOverlay").style.display = "none";
 
-        alert(err);
+    btnLaporkan.disabled = false;
 
-    }
+    btnLaporkan.innerHTML = "LAPORKAN";
+
+    console.error(err);
+
+    alert("Terjadi kesalahan saat mengirim laporan.");
+
+}
 
 }
 
