@@ -1,0 +1,437 @@
+/* =====================================================
+   SMART POINT
+   SMA Negeri 15 Surabaya
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+
+    background:#edf3f8;
+
+    min-height:100vh;
+
+    color:#333;
+
+}
+
+.container{
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:30px 20px 50px;
+
+}
+
+.header{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+.logo{
+
+    width:110px;
+
+    margin-bottom:15px;
+
+}
+
+.header h1{
+
+    color:#0F4C81;
+
+    font-size:38px;
+
+    margin-bottom:8px;
+
+    font-weight:700;
+
+}
+
+.header h2{
+
+    font-size:21px;
+
+    font-weight:600;
+
+    color:#444;
+
+    margin-bottom:10px;
+
+}
+
+.header p{
+
+    color:#666;
+
+    font-size:16px;
+
+}
+
+.card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.card h3{
+
+    color:#0F4C81;
+
+    margin-bottom:20px;
+
+    font-size:22px;
+
+}
+
+.form-group{
+
+    margin-bottom:18px;
+
+}
+
+label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:13px 15px;
+
+    border:1px solid #cfd8dc;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.25s;
+
+    background:#fff;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:#0F4C81;
+
+    box-shadow:0 0 0 3px rgba(15,76,129,.15);
+
+}
+
+input[readonly]{
+
+    background:#f5f5f5;
+
+}
+
+.menu-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.menu-button{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:30px 20px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    color:#fff;
+
+}
+
+.menu-button:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.menu-button.active{
+
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+
+}
+
+.menu-button.active:hover{
+
+    transform:translateY(-4px) scale(1.02);
+
+}
+
+.danger{
+
+    background:#d32f2f;
+
+}
+
+.success{
+
+    background:#2e7d32;
+
+}
+
+.emoji{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+}
+
+.menu-title{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+}
+
+hr{
+
+    margin:30px 0;
+
+    border:none;
+
+    border-top:1px solid #ddd;
+
+}
+
+.coming-soon{
+
+    color:#666;
+
+    font-style:italic;
+
+}
+
+.footer{
+
+    text-align:center;
+
+    color:#777;
+
+    margin-top:25px;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:700px){
+
+    .menu-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .header h1{
+
+        font-size:30px;
+
+    }
+
+    .header h2{
+
+        font-size:18px;
+
+    }
+
+    .card{
+
+        padding:20px;
+
+    }
+
+    .menu-button{
+
+        padding:25px;
+
+    }
+
+}
+
+/* =====================================
+   POPUP BERHASIL
+===================================== */
+
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.popup.show{
+
+    display:flex;
+
+}
+
+.popup-content{
+
+    width:90%;
+
+    max-width:400px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+    animation:popup .25s ease;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+.popup-icon{
+
+    font-size:60px;
+
+    margin-bottom:15px;
+
+}
+
+.popup-content h2{
+
+    color:#2e7d32;
+
+    margin-bottom:10px;
+
+}
+
+.popup-content p{
+
+    color:#666;
+
+    margin-bottom:25px;
+
+}
+
+.btn-wa,
+.btn-input{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:14px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    margin-top:10px;
+
+    transition:.25s;
+
+}
+
+.btn-wa{
+
+    background:#25D366;
+
+    color:#fff;
+
+}
+
+.btn-input{
+
+    background:#0F4C81;
+
+    color:#fff;
+
+}
+
+.btn-wa:hover,
+.btn-input:hover{
+
+    transform:translateY(-2px);
+
+}
