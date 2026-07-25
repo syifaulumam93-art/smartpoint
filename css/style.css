@@ -32,13 +32,25 @@ body{
 
 .container{
 
+    width:100%;
+
     max-width:1400px;
 
-    margin:auto;
+    margin:0 auto;
 
-    position:relative;
+    padding:24px;
 
-    z-index:2;
+    box-sizing:border-box;
+
+}
+
+@media (max-width:768px){
+
+    .container{
+
+        padding:20px;
+
+    }
 
 }
 
