@@ -55,43 +55,81 @@ async function loadDataPelanggaran() {
 }
 
 /* =====================================================
-   DROPDOWN PELANGGARAN
+   AUTOCOMPLETE PELANGGARAN
 ===================================================== */
 
 function isiDropdownPelanggaran(){
 
-    const select =
+    const input =
         document.getElementById("nama_pelanggaran");
 
-    if(!select) return;
+    const list =
+        document.getElementById("pelanggaranList");
 
-    select.innerHTML = "";
+    if(!input || !list) return;
 
-    const awal =
-        document.createElement("option");
+    input.addEventListener("input", function(){
 
-    awal.value = "";
+        const keyword =
+            this.value.toLowerCase().trim();
 
-    awal.textContent =
-        "-- Pilih Pelanggaran --";
+        list.innerHTML = "";
 
-    select.appendChild(awal);
+        if(keyword===""){
 
-    dataPelanggaran.forEach(item=>{
+            list.style.display = "none";
 
-        const option =
-            document.createElement("option");
+            return;
 
-        option.value =
-            item.nama_pelanggaran;
+        }
 
-        option.textContent =
-            item.nama_pelanggaran;
+        const hasil = dataPelanggaran.filter(item=>
 
-        option.dataset.poin =
-            item.jumlah_poin;
+            item.nama_pelanggaran
+                .toLowerCase()
+                .includes(keyword)
 
-        select.appendChild(option);
+        );
+
+        hasil.forEach(item=>{
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                "autocomplete-item";
+
+            div.textContent =
+                item.nama_pelanggaran;
+
+            div.onclick = ()=>{
+
+                input.value =
+                    item.nama_pelanggaran;
+
+                document.getElementById("jumlah_poin").value =
+                    item.jumlah_poin;
+
+                list.style.display = "none";
+
+            };
+
+            list.appendChild(div);
+
+        });
+
+        list.style.display =
+            hasil.length ? "block" : "none";
+
+    });
+
+    document.addEventListener("click", function(e){
+
+        if(!e.target.closest(".autocomplete")){
+
+            list.style.display = "none";
+
+        }
 
     });
 
