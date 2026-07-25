@@ -107,8 +107,7 @@ function isiDropdownPelanggaran(){
                 input.value =
                     item.nama_pelanggaran;
 
-                document.getElementById("jumlah_poin").value =
-                    item.jumlah_poin;
+                tampilkanPoin();
 
                 list.style.display = "none";
 
@@ -142,26 +141,25 @@ function isiDropdownPelanggaran(){
 function tampilkanPoin(){
 
     const pelanggaran =
-        document.getElementById(
-            "nama_pelanggaran"
-        );
+        document.getElementById("nama_pelanggaran");
 
     const poin =
-        document.getElementById(
-            "jumlah_poin"
-        );
+        document.getElementById("jumlah_poin");
 
-    if(
-        !pelanggaran ||
-        !poin
-    ){
+    if(!pelanggaran || !poin){
+
         return;
+
     }
 
-    const index =
-        pelanggaran.selectedIndex;
+    const data = dataPelanggaran.find(item=>
 
-    if(index<=0){
+        item.nama_pelanggaran ===
+        pelanggaran.value
+
+    );
+
+    if(!data){
 
         poin.value="";
 
@@ -172,8 +170,7 @@ function tampilkanPoin(){
     }
 
     poin.value =
-        pelanggaran.options[index]
-        .dataset.poin;
+        data.jumlah_poin;
 
     cekFormPelanggaran();
 
