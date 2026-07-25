@@ -730,37 +730,3 @@ document.addEventListener("click", function (e) {
     }
 
 });
-
-/* =====================================================
-   HERO SCROLL ANIMATION
-===================================================== */
-
-const hero = document.querySelector(".hero");
-
-let heroShrink = false;
-
-window.addEventListener("scroll", () => {
-
-    if (!hero) return;
-
-    const y = window.scrollY;
-
-    // Masuk mode shrink jika scroll > 100px
-    if (!heroShrink && y > 100) {
-
-        hero.classList.add("shrink");
-
-        heroShrink = true;
-
-    }
-
-    // Kembali normal jika scroll < 60px
-    else if (heroShrink && y < 60) {
-
-        hero.classList.remove("shrink");
-
-        heroShrink = false;
-
-    }
-
-});
