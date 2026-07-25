@@ -8,12 +8,28 @@
 </head>
 <body>
 <div class="container">
-  <header class="header">
-    <img src="assets/logo.png" class="logo" alt="Logo">
-    <h1>SMART POINT</h1>
-    <h2>Sistem Manajemen Laporan Pelanggaran & Prestasi Siswa</h2>
-    <p>SMA Negeri 15 Surabaya</p>
-  </header>
+  <header class="hero">
+
+    <div class="hero-overlay">
+
+        <img
+            src="assets/logo.png"
+            class="hero-logo"
+            alt="Logo SMA Negeri 15 Surabaya">
+
+        <h1>SMART POINT</h1>
+
+        <h2>
+            Sistem Manajemen Laporan Pelanggaran & Prestasi Siswa
+        </h2>
+
+        <p>
+            SMA Negeri 15 Surabaya
+        </p>
+
+    </div>
+
+</header>
 
   <section class="card">
     <h3>Identitas Guru</h3>
@@ -26,13 +42,32 @@
   <section class="card">
     <h3>Pilih Jenis Laporan</h3>
     <div class="menu-container">
-      <button id="btnPelanggaran" class="menu-button danger active">⚠️ Pelanggaran</button>
-      <button id="btnPrestasi" class="menu-button success">🏆 Prestasi</button>
+      <button id="btnPelanggaran" class="menu-button danger active">
+
+    <i data-lucide="triangle-alert"></i>
+
+    <span>Pelanggaran</span>
+
+</button>
+
+<button id="btnPrestasi" class="menu-button success">
+
+    <i data-lucide="trophy"></i>
+
+    <span>Prestasi</span>
+
+</button>
     </div>
   </section>
 
   <section id="formContainer" class="card">
-    <h3 id="judulForm">Form Laporan Pelanggaran</h3>
+    <h3 id="judulForm">
+
+    <i data-lucide="triangle-alert"></i>
+
+    Form Laporan Pelanggaran
+
+</h3>
 
     <div class="form-group">
       <label>Kelas</label>
@@ -148,6 +183,7 @@
 
 </div>
 
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="js/config.js"></script>
   <script src="js/siswa.js"></script>
   <script src="js/pelanggaran.js"></script>
@@ -201,5 +237,9 @@
     </div>
 
 </div>
+
+<script>
+lucide.createIcons();
+</script>
 </body>
 </html>

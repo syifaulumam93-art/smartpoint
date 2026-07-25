@@ -213,3 +213,67 @@ document
     reader.readAsDataURL(file);
 
 });
+
+/* =====================================================
+   VALIDASI FORM PRESTASI
+===================================================== */
+
+function cekFormPrestasi(){
+
+    const guru =
+        document.getElementById("guru").value.trim();
+
+    const namaPenghargaan =
+        document.getElementById("nama_penghargaan").value.trim();
+
+    const kategori =
+        document.getElementById("kategori").value;
+
+    const tingkat =
+        document.getElementById("tingkat_penghargaan").value;
+
+    const foto =
+        document.getElementById("foto_prestasi").files.length;
+
+    const tombol =
+        document.getElementById("btnLaporkanPrestasi");
+
+    if(
+        guru &&
+        kelas.value &&
+        nama_siswa.value &&
+        namaPenghargaan &&
+        kategori &&
+        tingkat &&
+        foto
+    ){
+
+        tombol.disabled = false;
+
+    }else{
+
+        tombol.disabled = true;
+
+    }
+
+}
+
+/* =====================================================
+   REFRESH VALIDASI PRESTASI
+===================================================== */
+
+document
+.getElementById("nama_penghargaan")
+.addEventListener("input",cekFormPrestasi);
+
+document
+.getElementById("kategori")
+.addEventListener("change",cekFormPrestasi);
+
+document
+.getElementById("tingkat_penghargaan")
+.addEventListener("change",cekFormPrestasi);
+
+document
+.getElementById("foto_prestasi")
+.addEventListener("change",cekFormPrestasi);

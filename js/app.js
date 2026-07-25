@@ -181,6 +181,12 @@ function refreshValidasi(){
 
     }
 
+      if(jenisLaporan==="prestasi"){
+
+        cekFormPrestasi();
+
+    }
+
 }
 
 txtGuru.addEventListener(
@@ -521,6 +527,137 @@ async function kirimPrestasi(){
 
         console.log("Foto Prestasi berhasil dibaca.");
 
+// ===========================
+// Nama File
+// ===========================
+
+const sekarang = new Date();
+
+const tanggal =
+    sekarang.getFullYear() +
+    String(sekarang.getMonth()+1).padStart(2,"0") +
+    String(sekarang.getDate()).padStart(2,"0");
+
+const fileName =
+    `${tanggal}_${kelas.value}_${siswa.nis}_${siswa.nama_siswa}.jpg`;
+
+// ===========================
+// Data yang dikirim
+// ===========================
+
+const data = {
+
+    jenis : "prestasi",
+
+    image : image,
+
+    fileName : fileName,
+
+    folder : "prestasi",
+
+    guru_pelapor : txtGuru.value,
+
+    kelas : kelas.value,
+
+    nis : siswa.nis,
+
+    nama_siswa : siswa.nama_siswa,
+
+    nama_penghargaan :
+        document.getElementById("nama_penghargaan").value,
+
+    tingkat_penghargaan :
+        document.getElementById("tingkat_penghargaan").value,
+
+    jumlah_poin :
+        document.getElementById("jumlah_poin_prestasi").value,
+
+    kategori :
+        document.getElementById("kategori").value,
+
+    masa_berlaku :
+        document.getElementById("masa_berlaku").value
+
+};
+
+console.log(data);
+
+// ===========================
+// Kirim ke Apps Script
+// ===========================
+
+const response = await fetch(
+
+    CONFIG.WEB_APP_URL,
+
+    {
+
+        method : "POST",
+
+        body : JSON.stringify(data)
+
+    }
+
+);
+
+const result = await response.json();
+
+console.log(result);
+
+// ===========================
+// Sembunyikan Loading
+// ===========================
+
+document.getElementById("loadingOverlay").style.display = "none";
+
+btnLaporkanPrestasi.disabled = false;
+
+btnLaporkanPrestasi.innerHTML =
+    "🏆 LAPORKAN PRESTASI";
+
+    if(result.status=="success"){
+
+    const nomor = siswa.nomor_wa
+        .replace(/^0/,"62")
+        .replace(/\D/g,"");
+
+    const pesan =
+`Assalamu'alaikum warahmatullahi wabarakatuh.
+
+Selamat Bapak/Ibu Orang Tua/Wali dari *${siswa.nama_siswa}*.
+
+Dengan penuh rasa syukur kami menyampaikan bahwa Ananda telah meraih prestasi berupa *${data.tingkat_penghargaan}* pada kategori *${data.kategori}* sehingga memperoleh penghargaan dengan poin prestasi sebesar *${data.jumlah_poin}* sesuai dengan ketentuan yang berlaku di SMA Negeri 15 Surabaya.
+
+Prestasi ini merupakan hasil dari kerja keras, semangat belajar, kedisiplinan, serta dukungan dan doa dari Bapak/Ibu di rumah.
+
+Semoga pencapaian ini dapat menjadi motivasi bagi Ananda untuk terus mengembangkan potensi, mempertahankan prestasi, dan menjadi teladan bagi teman-temannya.
+
+Sebagai bentuk apresiasi dan transparansi, dokumentasi penghargaan dapat Bapak/Ibu lihat melalui tautan berikut:
+
+${result.foto_url}
+
+Demikian laporan ini kami sampaikan sebagai bentuk komunikasi antara sekolah dan orang tua/wali dalam mengapresiasi setiap perkembangan positif Ananda.
+
+Semoga sinergi yang baik antara sekolah dan keluarga terus terjalin demi mendukung lahirnya generasi yang berprestasi, berkarakter, dan berakhlak mulia.
+
+Atas perhatian dan kerja sama Bapak/Ibu, kami ucapkan terima kasih.
+
+Wassalamu'alaikum warahmatullahi wabarakatuh.
+
+*Tim Kesiswaan SMA Negeri 15 Surabaya*`;
+
+    window.waUrl =
+        `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+
+    document
+        .getElementById("popupBerhasil")
+        .classList.add("show");
+
+}else{
+
+    alert(result.message);
+
+}
     }
 
     catch(err){
@@ -589,6 +726,40 @@ document.addEventListener("click", function (e) {
             .classList.remove("show");
 
         location.reload();
+
+    }
+
+});
+
+/* =====================================================
+   HERO SCROLL ANIMATION
+===================================================== */
+
+const hero = document.querySelector(".hero");
+
+let heroShrink = false;
+
+window.addEventListener("scroll", () => {
+
+    if (!hero) return;
+
+    const y = window.scrollY;
+
+    // Masuk mode shrink jika scroll > 100px
+    if (!heroShrink && y > 100) {
+
+        hero.classList.add("shrink");
+
+        heroShrink = true;
+
+    }
+
+    // Kembali normal jika scroll < 60px
+    else if (heroShrink && y < 60) {
+
+        hero.classList.remove("shrink");
+
+        heroShrink = false;
 
     }
 
